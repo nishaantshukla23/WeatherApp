@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF03EAEC29A9DA6600D46B26 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF03EAEB29A9DA6600D46B26 /* BundleExtension.swift */; };
+		EF77CB2829AA31350037F5A0 /* CityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF77CB2729AA31350037F5A0 /* CityListViewModel.swift */; };
+		EF77CB2A29AA43EB0037F5A0 /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF77CB2929AA43EB0037F5A0 /* CityViewModel.swift */; };
+		EFBEC28F29AA07DA0054F88F /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = EFBEC28E29AA07DA0054F88F /* weather.json */; };
+		EFBEC29129AA08730054F88F /* CityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEC29029AA08730054F88F /* CityListModel.swift */; };
+		EFBEC29329AA14570054F88F /* CityDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEC29229AA14570054F88F /* CityDetailsCell.swift */; };
 		EFFF4AB129A8D4D60011A898 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFF4AB029A8D4D60011A898 /* AppDelegate.swift */; };
 		EFFF4AB329A8D4D60011A898 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFF4AB229A8D4D60011A898 /* SceneDelegate.swift */; };
 		EFFF4AB829A8D4D60011A898 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFFF4AB629A8D4D60011A898 /* Main.storyboard */; };
@@ -36,6 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF03EAEB29A9DA6600D46B26 /* BundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
+		EF77CB2729AA31350037F5A0 /* CityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewModel.swift; sourceTree = "<group>"; };
+		EF77CB2929AA43EB0037F5A0 /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
+		EFBEC28E29AA07DA0054F88F /* weather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weather.json; sourceTree = "<group>"; };
+		EFBEC29029AA08730054F88F /* CityListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListModel.swift; sourceTree = "<group>"; };
+		EFBEC29229AA14570054F88F /* CityDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailsCell.swift; sourceTree = "<group>"; };
 		EFFF4AAD29A8D4D60011A898 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFFF4AB029A8D4D60011A898 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFFF4AB229A8D4D60011A898 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +88,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF03EAE929A9DA6600D46B26 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				EF03EAEA29A9DA6600D46B26 /* Extensions */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		EF03EAEA29A9DA6600D46B26 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF03EAEB29A9DA6600D46B26 /* BundleExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		EFFF4AA429A8D4D60011A898 = {
 			isa = PBXGroup;
 			children = (
@@ -99,8 +127,9 @@
 		EFFF4AAF29A8D4D60011A898 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				EFFF4AE529A8D89C0011A898 /* Resources */,
 				EFFF4AE029A8D8200011A898 /* Modules */,
+				EF03EAE929A9DA6600D46B26 /* Utility */,
+				EFFF4AE529A8D89C0011A898 /* Resources */,
 				EFFF4AB029A8D4D60011A898 /* AppDelegate.swift */,
 				EFFF4AB229A8D4D60011A898 /* SceneDelegate.swift */,
 				EFFF4AB629A8D4D60011A898 /* Main.storyboard */,
@@ -149,6 +178,7 @@
 		EFFF4AE229A8D86F0011A898 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EFBEC29029AA08730054F88F /* CityListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -156,6 +186,8 @@
 		EFFF4AE329A8D8780011A898 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				EF77CB2729AA31350037F5A0 /* CityListViewModel.swift */,
+				EF77CB2929AA43EB0037F5A0 /* CityViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -164,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				EFFF4AE729A9337E0011A898 /* CityListViewController.swift */,
+				EFBEC29229AA14570054F88F /* CityDetailsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +212,7 @@
 		EFFF4AE629A8D8A70011A898 /* Json */ = {
 			isa = PBXGroup;
 			children = (
+				EFBEC28E29AA07DA0054F88F /* weather.json */,
 			);
 			path = Json;
 			sourceTree = "<group>";
@@ -287,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFBEC28F29AA07DA0054F88F /* weather.json in Resources */,
 				EFFF4ABD29A8D4D70011A898 /* LaunchScreen.storyboard in Resources */,
 				EFFF4ABA29A8D4D70011A898 /* Assets.xcassets in Resources */,
 				EFFF4AB829A8D4D60011A898 /* Main.storyboard in Resources */,
@@ -315,8 +350,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFFF4AB129A8D4D60011A898 /* AppDelegate.swift in Sources */,
+				EF77CB2829AA31350037F5A0 /* CityListViewModel.swift in Sources */,
 				EFFF4AB329A8D4D60011A898 /* SceneDelegate.swift in Sources */,
+				EF77CB2A29AA43EB0037F5A0 /* CityViewModel.swift in Sources */,
 				EFFF4AE829A9337E0011A898 /* CityListViewController.swift in Sources */,
+				EFBEC29329AA14570054F88F /* CityDetailsCell.swift in Sources */,
+				EFBEC29129AA08730054F88F /* CityListModel.swift in Sources */,
+				EF03EAEC29A9DA6600D46B26 /* BundleExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
