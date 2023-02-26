@@ -26,4 +26,10 @@ class CityDetailsCell: UITableViewCell {
         self.lblLongitude.text = cityVM.longitude
     }
 
+    // check if it is required in storyboard or not...
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        // null
+//    }
+    
 }

@@ -8,28 +8,19 @@
 import Foundation
 
 struct CityViewModel {
+    
     private let cityModel: CityModel
     
     init(cityModel: CityModel) {
         self.cityModel = cityModel
     }
-}
-
-extension CityViewModel {
     
     var city: String {
-        guard let city = self.cityModel.city?.name else { return "" }
-        return city
+        self.cityModel.city?.name ?? ""
     }
     
     var country: String {
-        guard let country = self.cityModel.city?.country else { return "" }
-        return country
-    }
-    
-    var temperature: String {
-        guard let temp = self.cityModel.main?.temp else { return "" }
-        return "\(temp.formatAsDegree)"
+        self.cityModel.city?.country ?? ""
     }
     
     var latitude: String {
@@ -41,4 +32,10 @@ extension CityViewModel {
         guard let long = self.cityModel.city?.coord?.lon else { return "" }
         return "\(long)"
     }
+    
+    var temperature: String {
+        guard let temp = self.cityModel.main?.temp else { return "" }
+        return "\(temp.formatAsDegree)"
+    }
+
 }

@@ -15,7 +15,6 @@ extension Bundle {
      - Parameters:
        - file: JSON file name located in application bundle.
      */
-    
     func decode<T: Decodable>(from file: String) throws -> T {
         guard let url = self.url(forResource: file, withExtension: "json") else {
             throw ServiceError.resourceNotFound("Failed to locate \(file) in bundle.")

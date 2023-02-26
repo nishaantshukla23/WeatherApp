@@ -9,9 +9,11 @@ import Foundation
 
 class CityListViewModel {
     private var citiesWeatherService: WeatherServiceProtocol
-    var reloadTableView: (() -> Void)?
+    private let cityListQueue = DispatchQueue(label: "cityListQueue", attributes: .concurrent)
     private var cityList: [CityModel] = []
-    var filteredCityList: [CityModel] = [] {
+    var reloadTableView: (() -> Void)? // try to pass it inside init only.
+
+    private(set) var filteredCityList: [CityModel] = [] {
         didSet{
             reloadTableView?()
         }
@@ -33,7 +35,7 @@ extension CityListViewModel {
      This is method to fetch weather data for all Cities.
      
      */
-     func getCitiesWeatherData() {
+     func fetchCitiesWeatherData() {
         self.citiesWeatherService.getCitiesWeatherData(completion: { result in
             switch result {
             case .success(let citiesWeatherList):
@@ -49,13 +51,28 @@ extension CityListViewModel {
     /**
      This is method to filter fetched cities weather data as per Serach query.
      */
+    
     private func filterCityList() {
         if searchText.isEmpty {
-            filteredCityList = cityList
-        }else{
-            filteredCityList = cityList.filter({
-                ($0.city?.findname ?? "").contains(searchText.uppercased())
-            })
+            cityListQueue.async(flags: .barrier) { [weak self] in
+                self?.filteredCityList = self?.cityList ?? []
+            }
+        } else {
+            let workItem = DispatchWorkItem { [weak self] in
+                guard let self = self else { return }
+                self.filteredCityList = self.cityList.filter {
+                    ($0.city?.findname ?? "").contains(self.searchText.uppercased())
+                }
+            }
+            
+            cityListQueue.async(execute: workItem)
+            
+            // Cancel the previous work item if it's still executing and create a new one
+            cityListQueue.async(flags: .barrier) {
+                if !workItem.isCancelled {
+                    workItem.cancel()
+                }
+            }
         }
     }
     
@@ -71,8 +88,11 @@ extension CityListViewModel {
         return self.filteredCityList.count > 0 ? self.filteredCityList.count : 1
     }
     
-    func shouldShowNoDataFoundCell() -> Bool {
-        return self.filteredCityList.count > 0 ? false : true
+    /**
+     Method to provide type of tableView cell.
+     */
+    func getCellType() -> TableViewCell {
+        return self.filteredCityList.count > 0 ? .cityDataCell : .noDataCell
     }
     
     /**
@@ -81,9 +101,8 @@ extension CityListViewModel {
      - Parameters:
        - index: pass integer value to get CityViewModel from Network Model array i.e. [CityModel]
      */
-    func cityVMAtIndex(index: Int) -> CityViewModel {
-        let cityVM = self.filteredCityList[index]
-        return CityViewModel(cityModel: cityVM)
+    func cityVMAtIndex(index: Int) -> CityViewModel? {
+        return self.filteredCityList.count > index ? CityViewModel(cityModel: self.filteredCityList[index]) : nil
     }
     
 }
