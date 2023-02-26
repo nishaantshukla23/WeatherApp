@@ -25,8 +25,19 @@ class CityListViewController: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
+    /**
+     This is method to fetch Cities weather by invoking viewmodel class.
+        * Update the UI as data gets updated.
+    
+     */
     private func getCitiesWeatherRecords() {
         cityListVM.getCitiesWeatherData()
+        // Reload TableView closure
+        cityListVM.reloadTableView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
     
 }
@@ -59,6 +70,5 @@ extension CityListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         cityListVM.searchText = searchText
-        tableView.reloadData()
     }
 }

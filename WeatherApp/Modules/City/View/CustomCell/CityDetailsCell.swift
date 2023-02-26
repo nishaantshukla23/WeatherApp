@@ -17,6 +17,7 @@ class CityDetailsCell: UITableViewCell {
     @IBOutlet weak var lblLatitude: UILabel!
     @IBOutlet weak var lblLongitude: UILabel!
     
+    
     func setUpData(cityVM: CityViewModel) {
         self.lblCity.text = cityVM.city
         self.lblCountry.text = cityVM.country

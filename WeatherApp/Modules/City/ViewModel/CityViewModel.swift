@@ -29,7 +29,7 @@ extension CityViewModel {
     
     var temperature: String {
         guard let temp = self.cityModel.main?.temp else { return "" }
-        return "\(temp)"
+        return "\(temp.formatAsDegree)"
     }
     
     var latitude: String {
