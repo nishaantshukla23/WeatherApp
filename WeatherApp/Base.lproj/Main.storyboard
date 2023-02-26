@@ -154,6 +154,38 @@
                                             <outlet property="stackViewCity" destination="qMJ-Wm-Dzg" id="LIe-jd-Te0"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoDataInfoCell" rowHeight="132" id="LE6-AZ-5Jo" customClass="NoDataInfoCell" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="250" width="393" height="132"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LE6-AZ-5Jo" id="6AS-cg-Uw3">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="132"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hIf-9A-hPH">
+                                                    <rect key="frame" x="10" y="24.666666666666671" width="373" height="83"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing to show" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pye-dc-ogS">
+                                                            <rect key="frame" x="92" y="0.0" width="189" height="25"/>
+                                                            <fontDescription key="fontDescription" name="Georgia-BoldItalic" family="Georgia" pointSize="22"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter a valid City name to check Weather Details." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPy-re-9iH">
+                                                            <rect key="frame" x="4.6666666666666572" y="35" width="364" height="48"/>
+                                                            <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hIf-9A-hPH" firstAttribute="centerY" secondItem="6AS-cg-Uw3" secondAttribute="centerY" id="0V0-Y0-aeS"/>
+                                                <constraint firstAttribute="trailing" secondItem="hIf-9A-hPH" secondAttribute="trailing" constant="10" id="afH-Zf-luQ"/>
+                                                <constraint firstItem="hIf-9A-hPH" firstAttribute="leading" secondItem="6AS-cg-Uw3" secondAttribute="leading" constant="10" id="vup-IU-vhP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="LAx-33-UrV" id="uiQ-3m-daX"/>
@@ -170,6 +202,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qgs-hg-pvD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="KDZ-n4-4f3" firstAttribute="leading" secondItem="Qgs-hg-pvD" secondAttribute="leading" id="Aa6-LE-klZ"/>
                             <constraint firstItem="Qgs-hg-pvD" firstAttribute="bottom" secondItem="KDZ-n4-4f3" secondAttribute="bottom" id="GWF-YP-MJp"/>
@@ -181,6 +214,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Weather " id="Spu-cS-hMd"/>
+                    <connections>
+                        <outlet property="searchBar" destination="Uvu-ZY-xr3" id="iKp-9e-YFP"/>
+                        <outlet property="tableView" destination="KDZ-n4-4f3" id="eSw-aw-bc7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tnz-WV-F6I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

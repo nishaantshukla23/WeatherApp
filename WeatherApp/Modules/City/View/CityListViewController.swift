@@ -8,8 +8,11 @@
 import UIKit
 
 class CityListViewController: UIViewController {
-
+    
     private var cityListVM: CityListViewModel!
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     required init?(coder: NSCoder) {
         cityListVM = CityListViewModel()
@@ -19,32 +22,43 @@ class CityListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getCitiesWeatherRecords()
+        hideKeyboardWhenTappedAround()
     }
     
     private func getCitiesWeatherRecords() {
         cityListVM.getCitiesWeatherData()
     }
+    
 }
 
 // MARK: - Table view data source
 extension CityListViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cityListVM.numberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CityDetailsCell", for: indexPath) as? CityDetailsCell else{
-            return UITableViewCell()
+        if cityListVM.shouldShowNoDataFoundCell() {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoDataInfoCell", for: indexPath) as? NoDataInfoCell else{
+                return UITableViewCell()
+            }
+            return cell
+        }else{
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "CityDetailsCell", for: indexPath) as? CityDetailsCell else{
+                return UITableViewCell()
+            }
+            let cityViewModel = cityListVM.cityVMAtIndex(index: indexPath.row)
+            cell.setUpData(cityVM: cityViewModel)
+            return cell
         }
-        
-        let cityVM = cityListVM.cityVMAtIndex(index: indexPath.row)
-        
-        cell.lblCity.text = cityVM.city
-        cell.lblCountry.text = cityVM.country
-        cell.lblTemperature.text = cityVM.temperature
-        cell.lblLatitude.text = cityVM.latitude
-        cell.lblLongitude.text = cityVM.longitude
+    }
+}
 
-        return cell
+extension CityListViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        cityListVM.searchText = searchText
+        tableView.reloadData()
     }
 }

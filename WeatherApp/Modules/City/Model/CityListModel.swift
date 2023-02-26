@@ -77,5 +77,3 @@ struct Wind: Decodable {
         case varEnd = "var_end"
     }
 }
-
-//typealias  CityListModel = [CityModel]

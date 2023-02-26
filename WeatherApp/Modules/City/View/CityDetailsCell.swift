@@ -17,16 +17,12 @@ class CityDetailsCell: UITableViewCell {
     @IBOutlet weak var lblLatitude: UILabel!
     @IBOutlet weak var lblLongitude: UILabel!
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func setUpData(cityVM: CityViewModel) {
+        self.lblCity.text = cityVM.city
+        self.lblCountry.text = cityVM.country
+        self.lblTemperature.text = cityVM.temperature
+        self.lblLatitude.text = cityVM.latitude
+        self.lblLongitude.text = cityVM.longitude
     }
 
 }

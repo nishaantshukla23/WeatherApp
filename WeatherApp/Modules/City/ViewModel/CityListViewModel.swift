@@ -8,19 +8,34 @@
 import Foundation
 
 struct CityListViewModel {
-    var cityList: [CityModel]
-    init() {
-        self.cityList = [CityModel]()
+    private var cityList: [CityModel] = []
+    var filteredCityList: [CityModel] = []
+    var searchText: String = "" {
+        didSet {
+            filterCityList()
+        }
     }
 }
 
 extension CityListViewModel {
     mutating func getCitiesWeatherData() {
         self.cityList = Bundle.main.decode(from: "weather")
-        self.cityList.removeSubrange(5...self.cityList.count-10)
-        print(self.cityList)
+        self.filteredCityList = self.cityList
+       // self.cityList.removeSubrange(5...self.cityList.count-10)
+      //  print(self.cityList)
         print(self.cityList.count)
     }
+    
+    private mutating func filterCityList() {
+        if searchText.isEmpty {
+            filteredCityList = cityList
+        }else{
+            filteredCityList = cityList.filter({
+                ($0.city?.findname ?? "").contains(searchText.uppercased())
+            })
+        }
+    }
+    
 }
 
 extension CityListViewModel {
@@ -30,11 +45,15 @@ extension CityListViewModel {
     }
     
     func numberOfRowsInSection(_ section: Int) -> Int {
-        return self.cityList.count
+        return self.filteredCityList.count > 0 ? self.filteredCityList.count : 1
+    }
+    
+    func shouldShowNoDataFoundCell() -> Bool {
+        return self.filteredCityList.count > 0 ? false : true
     }
     
     func cityVMAtIndex(index: Int) -> CityViewModel {
-        let cityVM = self.cityList[index]
+        let cityVM = self.filteredCityList[index]
         return CityViewModel(cityModel: cityVM)
     }
     
