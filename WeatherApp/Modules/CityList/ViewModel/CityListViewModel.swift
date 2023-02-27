@@ -11,13 +11,13 @@ class CityListViewModel {
     private var citiesWeatherService: WeatherServiceProtocol
     private let cityListQueue = DispatchQueue(label: "cityListQueue", attributes: .concurrent)
     private var cityList: [CityModel] = []
-    var reloadTableView: (() -> Void)? // try to pass it inside init only.
-
     private(set) var filteredCityList: [CityModel] = [] {
         didSet{
             reloadTableView?()
         }
     }
+    var reloadTableView: (() -> Void)?
+
     var searchText: String = "" {
         didSet {
             filterCityList()
@@ -45,7 +45,6 @@ extension CityListViewModel {
                 print(error)
             }
         })
-        print(self.cityList.count)
     }
     
     /**
@@ -79,10 +78,6 @@ extension CityListViewModel {
 }
 
 extension CityListViewModel {
-    
-    var numberOfSections: Int {
-        return 1
-    }
     
     func numberOfRowsInSection(_ section: Int) -> Int {
         return self.filteredCityList.count > 0 ? self.filteredCityList.count : 1

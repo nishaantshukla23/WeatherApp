@@ -15,6 +15,9 @@ enum ServiceError: Error {
     case unknownError(String)
 }
 
+enum Resources: String {
+    case jsonFile = "weather"
+}
 
 protocol WeatherServiceProtocol {
     func getCitiesWeatherData(completion: @escaping (Result<[CityModel], ServiceError>) -> Void)
@@ -30,7 +33,7 @@ struct WeatherService: WeatherServiceProtocol {
      */
     func getCitiesWeatherData(completion: @escaping (Result<[CityModel], ServiceError>) -> Void) {
         do {
-            let result: [CityModel] = try Bundle.main.decode(from: "weather")
+            let result: [CityModel] = try Bundle.main.decode(from: Resources.jsonFile.rawValue)
             DispatchQueue.main.async {
                 completion(.success(result))
             }
