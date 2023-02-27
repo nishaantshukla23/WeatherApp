@@ -79,6 +79,9 @@ extension CityListViewModel {
 
 extension CityListViewModel {
     
+    /**
+     Method to provide number of rows in tableView section.
+     */
     func numberOfRowsInSection(_ section: Int) -> Int {
         return self.filteredCityList.count > 0 ? self.filteredCityList.count : 1
     }

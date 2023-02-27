@@ -13,16 +13,14 @@ enum TableViewCell: String {
 }
 
 class CityListViewController: UIViewController {
-    
-    private var cityListVM: CityListViewModel!
+        
+    private lazy var cityListVM = {
+        CityListViewModel()
+    }()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    required init?(coder: NSCoder) {
-        cityListVM = CityListViewModel()
-        super.init(coder: coder)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +34,7 @@ class CityListViewController: UIViewController {
     
      */
     private func getCitiesWeatherRecords() {
-        // Reload TableView closure
+        // Reload TableView closure - {binding}
         cityListVM.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
