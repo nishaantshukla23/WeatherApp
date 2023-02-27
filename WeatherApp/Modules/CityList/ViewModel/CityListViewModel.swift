@@ -7,7 +7,17 @@
 
 import Foundation
 
-class CityListViewModel {
+protocol CityListViewModelProtocol {
+    var reloadTableView: (() -> Void)? { get set }
+    var searchText: String { get set }
+    
+    func fetchCitiesWeatherData()
+    func numberOfRowsInSection(_ section: Int) -> Int
+    func getCellType() -> TableViewCell
+    func cityVMAtIndex(index: Int) -> CityViewModel?
+}
+
+class CityListViewModel: CityListViewModelProtocol {
     private var citiesWeatherService: WeatherServiceProtocol
     private let cityListQueue = DispatchQueue(label: "cityListQueue", attributes: .concurrent)
     private var cityList: [CityModel] = []

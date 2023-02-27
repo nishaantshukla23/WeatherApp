@@ -13,25 +13,26 @@ enum TableViewCell: String {
 }
 
 class CityListViewController: UIViewController {
-        
-    private lazy var cityListVM = {
-        CityListViewModel()
-    }()
     
+    private var cityListVM: CityListViewModelProtocol = CityListViewModel()
+        
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         getCitiesWeatherRecords()
         hideKeyboardWhenTappedAround()
     }
     
+    func setViewModel(cityListVM: CityListViewModelProtocol){
+        self.cityListVM = cityListVM
+    }
+    
     /**
      This is method to fetch Cities weather by invoking viewmodel class.
-        * Update the UI as data gets updated.
-    
+     * Update the UI as data gets updated.
+     
      */
     private func getCitiesWeatherRecords() {
         // Reload TableView closure - {binding}

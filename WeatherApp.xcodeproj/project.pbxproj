@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EF03EAEC29A9DA6600D46B26 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF03EAEB29A9DA6600D46B26 /* Bundle+Extension.swift */; };
+		EF37FCC029ACA4A000CDC88B /* CityListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37FCBF29ACA4A000CDC88B /* CityListViewControllerTest.swift */; };
+		EF37FCC229ACB29C00CDC88B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37FCC129ACB29C00CDC88B /* Coordinator.swift */; };
 		EF42334329AB6ECD002D52DE /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF42334229AB6ECD002D52DE /* WeatherService.swift */; };
 		EF42334929ABEEE2002D52DE /* CityViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF42334829ABEEE2002D52DE /* CityViewModelTest.swift */; };
 		EF42334B29ABEEF8002D52DE /* CityListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF42334A29ABEEF8002D52DE /* CityListViewModelTest.swift */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		EF03EAEB29A9DA6600D46B26 /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		EF37FCBF29ACA4A000CDC88B /* CityListViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewControllerTest.swift; sourceTree = "<group>"; };
+		EF37FCC129ACB29C00CDC88B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		EF42334229AB6ECD002D52DE /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		EF42334829ABEEE2002D52DE /* CityViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModelTest.swift; sourceTree = "<group>"; };
 		EF42334A29ABEEF8002D52DE /* CityListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewModelTest.swift; sourceTree = "<group>"; };
@@ -95,6 +99,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		EF37FCBE29ACA48300CDC88B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EF37FCBF29ACA4A000CDC88B /* CityListViewControllerTest.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		EF42334029AB66A1002D52DE /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +135,7 @@
 		EF42334629ABEE0D002D52DE /* CityList */ = {
 			isa = PBXGroup;
 			children = (
+				EF37FCBE29ACA48300CDC88B /* Controller */,
 				EF42334729ABEE29002D52DE /* ViewModel */,
 			);
 			path = CityList;
@@ -183,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				EFFF4AE129A8D8640011A898 /* CityList */,
+				EF37FCC129ACB29C00CDC88B /* Coordinator.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -349,6 +363,7 @@
 				EF77CB3029AB39F70037F5A0 /* Double+Extension.swift in Sources */,
 				EF77CB2A29AA43EB0037F5A0 /* CityViewModel.swift in Sources */,
 				EFFF4AE829A9337E0011A898 /* CityListViewController.swift in Sources */,
+				EF37FCC229ACB29C00CDC88B /* Coordinator.swift in Sources */,
 				EFBEC29329AA14570054F88F /* CityDetailsCell.swift in Sources */,
 				EFBEC29129AA08730054F88F /* CityListModel.swift in Sources */,
 				EF03EAEC29A9DA6600D46B26 /* Bundle+Extension.swift in Sources */,
@@ -360,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF42334B29ABEEF8002D52DE /* CityListViewModelTest.swift in Sources */,
+				EF37FCC029ACA4A000CDC88B /* CityListViewControllerTest.swift in Sources */,
 				EF42334929ABEEE2002D52DE /* CityViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
