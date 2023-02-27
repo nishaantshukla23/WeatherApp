@@ -4,7 +4,7 @@
 
 <!--description-->
 An App to display list of Citi &temp; their weather information. 
-WeatherApp is an iOS app integrates all the experiences in one place. On the app launch user will be able to see weather details, coordinates of various cities. User can type any city name in search bar and can check any City & weather related information.
+WeatherApp is an iOS app that uses a bundled JSON file to fetch weather records for various cities. On the app launch user will be able to see weather details, coordinates of various cities. User can type any city name in search bar and can check any City & weather related information.
 <!--/description-->
 
 ## Requirements
