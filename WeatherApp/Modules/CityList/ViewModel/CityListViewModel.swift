@@ -21,6 +21,7 @@ class CityListViewModel: CityListViewModelProtocol {
     private var citiesWeatherService: WeatherServiceProtocol
     private let cityListQueue = DispatchQueue(label: "cityListQueue", attributes: .concurrent)
     private var cityList: [CityModel] = []
+    private var workItem: DispatchWorkItem?
     private(set) var filteredCityList: [CityModel] = [] {
         didSet{
             reloadTableView?()
@@ -67,20 +68,22 @@ extension CityListViewModel {
                 self?.filteredCityList = self?.cityList ?? []
             }
         } else {
-            let workItem = DispatchWorkItem { [weak self] in
+            
+            // Cancel the previous work item if it's still executing and create a new one
+            workItem?.cancel()
+            
+            workItem = DispatchWorkItem { [weak self] in
                 guard let self = self else { return }
-                self.filteredCityList = self.cityList.filter {
+                let result = self.cityList.filter {
                     ($0.city?.findname ?? "").contains(self.searchText.uppercased())
+                }
+                self.cityListQueue.async(flags: .barrier) {
+                    self.filteredCityList = result
                 }
             }
             
-            cityListQueue.async(execute: workItem)
-            
-            // Cancel the previous work item if it's still executing and create a new one
-            cityListQueue.async(flags: .barrier) {
-                if !workItem.isCancelled {
-                    workItem.cancel()
-                }
+            if let searchOperation = self.workItem {
+                cityListQueue.async(execute: searchOperation)
             }
         }
     }

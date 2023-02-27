@@ -14,7 +14,7 @@ enum TableViewCell: String {
 
 class CityListViewController: UIViewController {
     
-    private var cityListVM: CityListViewModelProtocol = CityListViewModel()
+    private var cityListVM: CityListViewModelProtocol?
         
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -36,12 +36,15 @@ class CityListViewController: UIViewController {
      */
     private func getCitiesWeatherRecords() {
         // Reload TableView closure - {binding}
-        cityListVM.reloadTableView = { [weak self] in
+        guard var cityListviewModel = cityListVM else {
+            return
+        }
+        cityListviewModel.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
         }
-        cityListVM.fetchCitiesWeatherData()
+        cityListviewModel.fetchCitiesWeatherData()
     }
     
 }
@@ -50,11 +53,17 @@ class CityListViewController: UIViewController {
 extension CityListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cityListVM.numberOfRowsInSection(section)
+        guard let cityListviewModel = cityListVM else {
+            return 0
+        }
+        return cityListviewModel.numberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch cityListVM.getCellType() {
+        guard let cityListviewModel = cityListVM else {
+            return UITableViewCell()
+        }
+        switch cityListviewModel.getCellType() {
         case .noDataCell:
             return getNoDataCell(tableView: tableView, indexPath: indexPath)
         case .cityDataCell:
@@ -76,10 +85,10 @@ extension CityListViewController: UITableViewDataSource {
      This is method to provide cell object i.e. 'CityDetailsCell'
      */
     private func getCityDetailsCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.cityDataCell.rawValue, for: indexPath) as? CityDetailsCell else{
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.cityDataCell.rawValue, for: indexPath) as? CityDetailsCell, let cityListviewModel = cityListVM  else{
             return UITableViewCell()
         }
-        if let cityViewModel = cityListVM.cityVMAtIndex(index: indexPath.row) {
+        if let cityViewModel = cityListviewModel.cityVMAtIndex(index: indexPath.row) {
             cell.setUpData(cityVM: cityViewModel)
         }
         return cell
@@ -90,6 +99,9 @@ extension CityListViewController: UITableViewDataSource {
 extension CityListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        cityListVM.searchText = searchText
+        guard var cityListviewModel = cityListVM else {
+            return
+        }
+        cityListviewModel.searchText = searchText
     }
 }
