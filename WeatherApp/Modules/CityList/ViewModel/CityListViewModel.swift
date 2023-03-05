@@ -38,6 +38,7 @@ class CityListViewModel: CityListViewModelProtocol {
     init(citiesWeatherService: WeatherServiceProtocol = WeatherService()) {
         self.citiesWeatherService = citiesWeatherService
     }
+    
 }
 
 extension CityListViewModel {
@@ -47,11 +48,11 @@ extension CityListViewModel {
      
      */
      func fetchCitiesWeatherData() {
-        self.citiesWeatherService.getCitiesWeatherData(completion: { result in
+        self.citiesWeatherService.getCitiesWeatherData(completion: { [weak self] result in
             switch result {
             case .success(let citiesWeatherList):
-                self.cityList = citiesWeatherList
-                self.filteredCityList = self.cityList
+                self?.cityList = citiesWeatherList
+                self?.filteredCityList = self?.cityList ?? []
             case .failure(let error):
                 print(error)
             }
